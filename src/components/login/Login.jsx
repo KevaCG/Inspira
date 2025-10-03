@@ -1,76 +1,94 @@
-// src/components/Login.jsx
+// src/components/login/Login.jsx
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+// 1. Importa los nuevos proveedores y funciones
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from '../../firebase';
+
 import { FcGoogle } from 'react-icons/fc';
-import { FaApple, FaFacebook, FaEnvelope, FaLock } from 'react-icons/fa';
-import './Login.css';
+import { FaApple, FaFacebook } from 'react-icons/fa';
 import Input from '../input/Input';
 import Button from '../buttonLogin/Button';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../firebase';
+import './Login.css';
 
 const Login = () => {
-    const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-            navigate('/home');
-        } catch (error) {
-            console.error("Error al iniciar sesión:", error);
-            alert("Correo o contraseña incorrectos.");
-        }
-    };
+  const handleEmailSignIn = async (event) => {
+    event.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate('/home');
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert("Correo o contraseña incorrectos.");
+    }
+  };
 
-    return (
-        <div className="login-container">
-            <div className="login-box">
-                <h1>
-                    Bienvenido a <strong>Inspira</strong>
-                </h1>
-                <p className="subtitle">Inicia sesión para continuar</p>
+  // --- 2. NUEVA FUNCIÓN PARA EL INICIO DE SESIÓN CON GOOGLE ---
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
 
-                <form onSubmit={handleSubmit}>
-                    <Input
-                        label="Correo Electrónico"
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        icon={<FaEnvelope size={16} />}
-                    />
-                    <Input
-                        label="Contraseña"
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        icon={<FaLock size={16} />}
-                    />
+      // Revisa si el usuario ya existe en Firestore
+      const userDocRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userDocRef);
 
-                    <div className="button-wrapper">
-                        <Button type="submit">Iniciar Sesion</Button>
-                    </div>
-                </form>
+      // Si el usuario no existe, crea su documento
+      if (!userDoc.exists()) {
+        await setDoc(userDocRef, {
+          name: user.displayName,
+          email: user.email,
+        });
+      }
+      
+      navigate('/home'); // Redirige al home
+    } catch (error) {
+      console.error("Error al iniciar sesión con Google:", error);
+      alert(`Error: ${error.message}`);
+    }
+  };
 
-                <a href="#" className="forgot-password">
-                    ¿Olvidaste tu contraseña?
-                </a>
-                <div className="divider"></div>
-                <div className="social-login">
-                    <button className="social-button"><FcGoogle size={20} /></button>
-                    <button className="social-button"><FaApple size={20} color='#000' /></button>
-                    <button className="social-button"><FaFacebook size={20} color="#1877F2" /></button>
-                </div>
-                <p className="signup-link">
-                    ¿No tienes cuenta? <Link to="/registro">Regístrate</Link>
-                </p>
+  return (
+    <div className="login-container">
+      <div className="login-box">
+        <h1>Bienvenido a <strong>Inspira</strong></h1>
+        <p className="subtitle">Inicia sesión para continuar</p>
+
+        <form onSubmit={handleEmailSignIn}>
+            <Input
+                label="Correo Electrónico" type="email" name="email"
+                value={email} onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+                label="Contraseña" type="password" name="password"
+                value={password} onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className="button-wrapper">
+                <Button type="submit">Iniciar Sesión</Button>
             </div>
+        </form>
+
+        <a href="#" className="forgot-password">¿Olvidaste tu contraseña?</a>
+        <div className="divider"></div>
+
+        <div className="social-login">
+            <button className="social-button" onClick={handleGoogleSignIn}>
+                <FcGoogle size={20} />
+            </button>
         </div>
-    );
+
+        <p className="signup-link">
+          ¿No tienes cuenta? <Link to="/registro">Regístrate</Link>
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default Login;

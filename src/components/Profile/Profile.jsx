@@ -77,9 +77,6 @@ const Profile = () => {
                         </div>
                         <IoChevronForward className="menu-item-arrow" />
                     </li>
-                    <MenuItem icon={<FaLock />} text="Cambiar Contraseña" to="/profile/password" />
-                    <MenuItem icon={<FaQuestionCircle />} text="Ayuda y Soporte" to="/help" />
-                    <MenuItem icon={<FaCog />} text="Preferencias" to="/settings" />
                     <li className="profile-menu-item" onClick={handleLogout}>
                         <div className="menu-item-content">
                             <span className="menu-item-icon logout-icon"><IoExitOutline /></span>
