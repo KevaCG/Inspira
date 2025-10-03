@@ -1,0 +1,34 @@
+/* En tu archivo Header.css */
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9;
+    z-index: 50;
+}
+
+.profile-icon-wrapper {
+    background-color: #e0e0e0;
+    border-radius: 50%; /* Mantiene el círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* --- LÍNEAS CLAVE PARA EL TAMAÑO --- */
+    width: 40px;  /* Define el tamaño final (similar a los 32px + padding de antes) */
+    height: 40px;
+    overflow: hidden; /* Oculta cualquier parte de la imagen que se salga del círculo */
+}
+
+/* --- REGLA NUEVA PARA LA IMAGEN --- */
+.profile-icon-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen llene el espacio sin deformarse */
+}

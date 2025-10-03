@@ -1,0 +1,123 @@
+/* --- Contenedor Principal del Sidebar --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #e0e0e0;
+    transform: translateX(-100%); /* Oculto por defecto */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 100;
+    display: flex;
+    flex-direction: column; /* Organiza el contenido verticalmente */
+    box-sizing: border-box;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+/* --- Cabecero del Sidebar --- */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    flex-shrink: 0; /* Evita que se encoja */
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #004d40;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Navegación Principal --- */
+.sidebar-nav {
+    flex-grow: 1; /* Ocupa el espacio central disponible */
+    overflow-y: auto; /* Añade scroll si los elementos no caben */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.icon-container {
+    padding: 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Estilos de Color para los Íconos --- */
+.color-purple .icon-container { background-color: #e9d5ff; border: 1px solid #c4b5fd; color: #8b5cf6; }
+.color-blue .icon-container { background-color: #dbeafe; border: 1px solid #93c5fd; color: #3b82f6; }
+.color-green .icon-container { background-color: #d1fae5; border: 1px solid #a7f3d0; color: #10b981; }
+.color-yellow .icon-container { background-color: #fef3c7; border: 1px solid #fde68a; color: #f59e0b; }
+.color-pink .icon-container { background-color: #fce7f3; border: 1px solid #f9a8d4; color: #ec4899; }
+
+/* --- Estados Hover y Active --- */
+.sidebar-item:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.sidebar-item.active {
+    background-color: #004d40; /* Verde Inspira */
+    color: white;
+}
+
+.sidebar-item.active .icon-container {
+    background-color: #fff;
+}
+
+/* --- Pie de Página del Sidebar --- */
+.sidebar-footer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+    flex-shrink: 0; /* Evita que se encoja */
+}
+
+.profile-link {
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.profile-link .icon-container {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    color: #555;
+}
