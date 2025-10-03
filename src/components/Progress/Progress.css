@@ -1,0 +1,81 @@
+/* src/components/progress/Progress.css */
+.progress-container {
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.progress-container h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.history-list {
+    display: grid;
+    gap: 20px;
+}
+
+.history-item {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.history-item h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #004d40; /* Verde Inspira */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.contribution-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.contribution-icon {
+    color: #88C0C0; /* Verde claro */
+    font-size: 1.1rem;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.contribution-text {
+    margin: 0;
+    font-style: italic;
+    color: #555;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    flex-grow: 1;
+}
+
+.contribution-image {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.empty-state {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.empty-state h3 {
+    color: #333;
+}
+
+.empty-state p {
+    color: #777;
+    line-height: 1.6;
+}

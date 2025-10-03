@@ -1,0 +1,185 @@
+/* src/components/chat/ChatList.css */
+
+.chat-list-container {
+    padding: 20px;
+    /* El fondo ahora viene del contenedor principal en App.css */
+    flex-grow: 1; /* Ocupa el espacio vertical disponible */
+    overflow-y: auto;
+    box-sizing: border-box;
+    color: #333;
+}
+
+.chat-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.chat-list-header h2 {
+    font-size: 2.2rem; /* Más grande para el saludo */
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.header-icons .header-icon {
+    margin-left: 15px;
+    color: #555;
+    cursor: pointer;
+}
+
+.chat-tabs {
+    display: flex;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    padding: 5px;
+    margin-bottom: 25px;
+    width: fit-content; /* Se ajusta al contenido */
+}
+
+.chat-tab {
+    background-color: transparent;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #555;
+    transition: all 0.2s ease;
+}
+
+.chat-tab.active {
+    background-color: #004d40; /* Verde Inspira para el tab activo */
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 77, 64, 0.2);
+}
+
+.chat-items-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: white;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chat-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.chat-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+}
+
+.chat-last-message {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.chat-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.85rem;
+    color: #888;
+    flex-shrink: 0;
+}
+
+.chat-time {
+    margin-bottom: 5px;
+}
+
+.chat-unread-count {
+    background-color: #004d40; /* Verde Inspira para notificaciones */
+    color: #333;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.search-bar-wrapper {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 15px 12px 45px; /* Espacio a la izquierda para el ícono */
+    border: none;
+    border-radius: 25px;
+    background-color: #e0e0e0;
+    font-size: 1rem;
+    box-sizing: border-box;
+    color: #333;
+}
+
+.search-input:focus {
+    outline: none;
+    background-color: #dcdcdc;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+    background-color: #f0f0f0;
+}

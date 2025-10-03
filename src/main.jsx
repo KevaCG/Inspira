@@ -14,6 +14,11 @@ import Home from './components/home/Home.jsx';
 
 import './index.css';
 import Profile from './components/Profile/Profile.jsx';
+import ChatList from './components/ChatList/ChatList.jsx';
+import ChatView from './components/ChatList/ChatView.jsx';
+import Progress from './components/Progress/Progress.jsx';
+import CommunityMural from './components/CommunityMural/CommunityMural.jsx';
+import Journal from './components/Journal/Journal.jsx';
 
 const router = createBrowserRouter([
 
@@ -28,10 +33,11 @@ const router = createBrowserRouter([
         path: '/home',
         element: <Home />,
       },
-      { path: '/community', element: <div>Página de Comunidad Próximamente</div> },
-      { path: '/journal', element: <div>Página de Diario Próximamente</div> },
-      { path: '/progress', element: <div>Página de Progreso Próximamente</div> },
-      { path: '/chat', element: <div>Página de Chat Próximamente</div> },
+      { path: '/community', element: <CommunityMural /> },
+      { path: '/journal', element: <Journal /> },
+      { path: '/progress', element: <Progress /> },
+      { path: '/chat', element: <ChatList /> },
+      { path: '/chat/:chatId', element: <ChatView /> },
       { path: '/profile', element: <Profile /> },
     ],
   },

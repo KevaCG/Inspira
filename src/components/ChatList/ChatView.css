@@ -1,0 +1,131 @@
+.chat-view-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: #e5ddd5; /* Fondo de la conversación */
+    color: #333;
+}
+
+/* --- Cabecero --- */
+.chat-view-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    z-index: 10;
+}
+.back-button {
+    color: #333;
+    margin-right: 10px;
+}
+.contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+}
+.contact-avatar img {
+    width: 100%;
+    height: 100%;
+}
+.contact-info {
+    flex-grow: 1;
+}
+.contact-name {
+    font-weight: 600;
+    display: block;
+}
+.contact-status {
+    font-size: 0.8rem;
+    color: #004d40;
+}
+.chat-actions {
+    display: flex;
+    align-items: center;
+}
+.chat-actions .action-icon {
+    margin-left: 20px;
+    color: #555;
+    cursor: pointer;
+}
+
+/* --- Área de Mensajes --- */
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+.message-bubble-wrapper {
+    display: flex;
+    margin-bottom: 10px;
+    max-width: 75%;
+}
+.message-bubble {
+    padding: 10px 15px;
+    border-radius: 18px;
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+
+/* Burbujas de mensajes recibidos */
+.message-bubble-wrapper.received {
+    align-self: flex-start;
+}
+.message-bubble-wrapper.received .message-bubble {
+    background-color: #ffffff;
+    border-bottom-left-radius: 4px;
+    color: #333;
+}
+
+/* Burbujas de mensajes enviados */
+.message-bubble-wrapper.sent {
+    align-self: flex-end;
+}
+.message-bubble-wrapper.sent .message-bubble {
+    background-color: #004d40; /* Verde Inspira */
+    border-bottom-right-radius: 4px;
+    color: white; /* Texto blanco */
+}
+
+/* --- Área de Input --- */
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+.chat-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+/* Hace que el componente Input ocupe el espacio disponible */
+.chat-form > div {
+    flex-grow: 1;
+}
+.send-button {
+    background-color: #004d40;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 44px;  /* <-- CAMBIO AQUÍ */
+    height: 44px; /* <-- Y AQUÍ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+}
+.send-button:hover {
+    background-color: #00382e;
+}
